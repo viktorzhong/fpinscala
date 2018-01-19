@@ -32,17 +32,27 @@ object Chap2 {
     * solution for exercise 2.3
     * 把f转换为只有一个参数的部分应用函数
     */
-  def curry[A,B,C](f:(A, B) => C) : A => (B => C) = {
-      (f _).curried
+  def curry[A, B, C](f: (A, B) => C): A => (B => C) = {
+    f.curried
   }
 
   /**
     * solution for exercise 2.3
-    * 实现反科里化
+    * 实现反柯里化
     * 思路: 调用Function.uncurried()
     */
+
   def uncurry[A, B, C](f: A => B => C) : (A, B) => C = {
     Function.uncurried(f)
   }
 
+  /**
+    * solution for exercise 2.3
+    * 将两个函数组合为一个函数
+    * 思路: 1) 用Function1的compose方法
+    *      2) g是输入为类型A，输出为类型B的函数；而f的输入参数类型为B
+    */
+  def compose[A, B, C](f: B => C, g: A => B): A => C = {
+    A => f(g(A))
+  }
 }
