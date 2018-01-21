@@ -18,4 +18,26 @@ object List {
     if (as.isEmpty) Nil
     else Cons(as.head, apply(as.tail: _*))
   }
+
+  /**
+    * 练习3.2 实现tail函数
+    * 思路：用模式匹配
+    */
+  def tail[A](list: List[A]): List[A] = {
+    list match {
+      case Nil => Nil
+      case Cons(_, t) => t
+    }
+  }
+
+  /**
+    * 练习3.3 实现函数 setHead
+    * 思路：用模式匹配
+    */
+  def setHead[A](head: A, list: List[A]): List[A] = {
+    list match {
+      case Nil => Nil
+      case Cons(_, t) => Cons(head, t)
+    }
+  }
 }
