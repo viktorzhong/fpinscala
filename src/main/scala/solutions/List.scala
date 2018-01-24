@@ -40,4 +40,27 @@ object List {
       case Cons(_, t) => Cons(head, t)
     }
   }
+
+  /**
+    * 练习3.4 实现函数 drop
+    * 思路：模式匹配 递归调用drop
+    */
+  def drop[A](l: List[A], n: Int): List[A] = {
+    if (n <= 0) l
+    else l match {
+      case Nil => Nil
+      case Cons(_, tail) => drop(tail, n - 1)
+    }
+  }
+
+  /**
+    * 练习3.5 实现函数 dropWhile 删除所有符合预判f(A)的元素
+    * 思路：模式匹配 递归调用dropWhile 并在=>前增加if判断
+    */
+  def dropWhile[A](l: List[A], f: A => Boolean): List[A] = {
+    l match {
+      case Cons(h, t) if (f(h)) => dropWhile(t, f)
+      case _ => l
+    }
+  }
 }

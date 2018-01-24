@@ -1,7 +1,7 @@
 package solutions
 
 import org.scalatest.FunSuite
-import solutions.List.{tail,setHead}
+import solutions.List._
 
 class Chap3Test extends FunSuite {
 
@@ -18,5 +18,19 @@ class Chap3Test extends FunSuite {
     val _new = Cons(1, Cons(3, Cons(4, Nil)))
 
     assert(_new === setHead(1, _list))
+  }
+
+  test("test drop") {
+    val _list = Cons(1, Cons(2, Cons(3, Cons(4, Nil))))
+    val _tail = Cons(3, Cons(4, Nil))
+
+    assert(_tail === drop(_list, 2))
+  }
+
+  test("test dropWhile") {
+    val _list = Cons(1, Cons(2, Cons(3, Cons(4, Nil))))
+    val _tail = Cons(3, Cons(4, Nil))
+
+    assert(_tail === dropWhile(_list, (x:Int) => x <= 2))
   }
 }
