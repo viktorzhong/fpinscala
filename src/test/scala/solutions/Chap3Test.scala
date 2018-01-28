@@ -33,4 +33,11 @@ class Chap3Test extends FunSuite {
 
     assert(_tail === dropWhile(_list, (x:Int) => x <= 2))
   }
-}
+
+  test("test init") {
+    val _list = Cons(1, Cons(2, Cons(3, Cons(4, Nil))))
+    val _head = Cons(1, Cons(2, Cons(3, Nil)))
+
+    assert(_head === init(_list))
+  }
+ }

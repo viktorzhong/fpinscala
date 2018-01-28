@@ -63,4 +63,17 @@ object List {
       case _ => l
     }
   }
+
+  /**
+    * 练习3.6 实现函数 init 返回除最后一个元素的列表
+    * 思路：模式匹配
+    */
+  def init[A](l: List[A]): List[A] = {
+    l match {
+      case Nil => Nil
+      case Cons(_, Nil) => Nil
+      case Cons(h, t) => Cons(h, init(t))
+    }
+  }
+
 }
