@@ -76,6 +76,15 @@ object List {
     }
   }
 
-
+  /**
+    * 练习3.10 尾递归实现foldLeft
+    */
+  def foldLeft[A, B](as: List[A], z: B)(f: (B, A) => B): B = {
+    as match {
+      case Nil => z
+      case Cons(h, Nil) => f(z, h)
+      case Cons(h,xs) => foldLeft(xs, f(z, h))(f)
+    }
+  }
 
 }

@@ -29,4 +29,6 @@ object Chap3 extends App {
   def length[A](as: List[A]): Int = {
     foldRight(as, 0)((_, t) => t + 1)
   }
+
+
 }
