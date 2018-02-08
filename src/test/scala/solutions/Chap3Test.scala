@@ -2,6 +2,7 @@ package solutions
 
 import org.scalatest.FunSuite
 import solutions.List._
+import solutions.Tree.{size, depth}
 
 class Chap3Test extends FunSuite {
 
@@ -49,5 +50,20 @@ class Chap3Test extends FunSuite {
   test("test foldLeft product") {
     val _list = Cons(1, Cons(2, Cons(3, Cons(4, Nil))))
     assert(24 === foldLeft(_list, 1)((x,y) => x * y))
+  }
+
+  test("tree size") {
+    val left = Leaf(1)
+    val right = Leaf(2)
+    val root = Branch(left, right)
+    assert(size[Int](root) === 3)
+  }
+
+  test("tree depth") {
+    val l1 = Leaf(2)
+    val left = Branch(l1, null)
+    val right = Leaf(4)
+    val root = Branch(left, right)
+    assert(depth(root) === 3)
   }
  }
