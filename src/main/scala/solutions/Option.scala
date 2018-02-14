@@ -11,6 +11,11 @@ sealed trait Option[+A] {
     case Some(x) => Some(f(x))
   }
 
+  def flatMap[B](f: A => Option[B]): Option[B] = this match {
+    case None => None
+    case Some(x) => f(x)
+  }
+
   // B >: A 表示B是A类型或者A类型的父类型
   // default: => B 表示default类型为B 但不是立即求值
   def getOrElse[B >: A](default: => B): B = this match {
@@ -22,6 +27,19 @@ sealed trait Option[+A] {
     this.map(Some(_)).getOrElse(ob)
   }
 
+}
+
+object Option {
+
+  def mean(xs: Seq[Double]): Option[Double] =
+    if (xs.isEmpty) None
+    else Some(xs.sum / xs.length)
+
+  // 4.2 根据flatMap实现xs的方差
+  def variance(xs: Seq[Double]): Option[Double] = {
+
+    mean(xs).flatMap(m => mean(xs.map(x => math.pow(x - m, 2))))
+  }
 }
 
 case class Some[+A](get: A) extends Option[A]
