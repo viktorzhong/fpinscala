@@ -40,6 +40,14 @@ object Option {
 
     mean(xs).flatMap(m => mean(xs.map(x => math.pow(x - m, 2))))
   }
+
+  // 接受一个非严格求值的A参数, 如果产生异常则返回None
+  def Try[A](a: => A): Option[A] = {
+    try Some(a)
+    catch {
+      case e: Exception => None
+    }
+  }
 }
 
 case class Some[+A](get: A) extends Option[A]
