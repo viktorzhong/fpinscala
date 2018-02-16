@@ -48,6 +48,13 @@ object Option {
       case e: Exception => None
     }
   }
+
+  // 练习4.3 使用二元函数组合两个option
+  def map2[A, B, C](a: Option[A], b: Option[B])(f: (A, B) => C): Option[C] = {
+    a.flatMap(x => b.map(y => f(x, y)))
+  }
+
+
 }
 
 case class Some[+A](get: A) extends Option[A]
