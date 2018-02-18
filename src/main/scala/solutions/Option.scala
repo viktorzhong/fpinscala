@@ -54,6 +54,14 @@ object Option {
     a.flatMap(x => b.map(y => f(x, y)))
   }
 
+  // 使用for推导式实现map2  aa <- a 编译器会自动转换成flatMap调用
+  def map2_2[A, B, C](a: Option[A], b: Option[B])(f: (A, B) => C): Option[C] = {
+    for {
+      aa <- a
+      bb <- b
+    } yield f(aa, bb)
+  }
+
 
 }
 
